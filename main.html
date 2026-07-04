@@ -1,0 +1,673 @@
+<html>
+  <head>
+    <title>MyProj.html</title>
+    <meta charset="utf-8" />
+    <style type="text/css"></style>
+    <style type="text/css">
+      .mxEdgeFlow {
+        animation: mxEdgeFlow 0.5s linear infinite;
+      }
+      @keyframes mxEdgeFlow {
+        to {
+          stroke-dashoffset: -16;
+        }
+      }
+    </style>
+    <style type="text/css">
+      .geDarkMode img {
+        filter: invert(1);
+      }
+      div.mxTooltip {
+        box-shadow: 3px 3px 12px light-dark(#c0c0c0, transparent);
+        background: light-dark(#ffffcc, #121212);
+        border-style: solid;
+        border-width: 1px;
+        border-color: black;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI Variable", "Segoe UI",
+          system-ui, ui-sans-serif, Helvetica, Arial, sans-serif,
+          "Apple Color Emoji", "Segoe UI Emoji";
+        font-size: 8pt;
+        position: absolute;
+        cursor: default;
+        padding: 4px;
+        color: black;
+      }
+      td.mxPopupMenuIcon div {
+        width: 16px;
+        height: 16px;
+      }
+      div.mxPopupMenu {
+        box-shadow: 2px 2px 3px light-dark(#d5d5d5, transparent);
+        background: white;
+        position: absolute;
+        border: 3px solid #e7e7e7;
+        padding: 3px;
+      }
+      table.mxPopupMenu {
+        border-collapse: collapse;
+        margin: 0px;
+      }
+      td.mxPopupMenuItem {
+        padding: 7px 30px;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI Variable", "Segoe UI",
+          system-ui, ui-sans-serif, Helvetica, Arial, sans-serif,
+          "Apple Color Emoji", "Segoe UI Emoji";
+        font-size: 10pt;
+      }
+      td.mxPopupMenuIcon {
+        background-color: light-dark(#ffffff, #121212);
+        padding: 0px;
+      }
+      tr.mxPopupMenuItemHover {
+        background-color: #eeeeee;
+        color: black;
+      }
+      table.mxPopupMenu hr {
+        color: #cccccc;
+        background-color: #cccccc;
+        border: none;
+        height: 1px;
+      }
+      table.mxPopupMenu tr {
+        font-size: 4pt;
+      }
+      .geDialog,
+      .geDialog table {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI Variable", "Segoe UI",
+          system-ui, ui-sans-serif, Helvetica, Arial, sans-serif,
+          "Apple Color Emoji", "Segoe UI Emoji";
+        font-size: 10pt;
+        border: none;
+        margin: 0px;
+      }
+      .geDialog {
+        position: fixed;
+        background: light-dark(#ffffff, #121212);
+        color: light-dark(#3f3f3f, #c0c0c0);
+        box-shadow: 0px 0px 2px 2px light-dark(#d5d5d5, transparent);
+        border: 1px solid light-dark(#dadada, #565656);
+        overflow: hidden;
+        padding: 30px;
+        left: 50%;
+        top: 50%;
+        max-height: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        transform: translate(-50%, -50%);
+        z-index: 1001;
+      }
+      .geBackground {
+        background-color: light-dark(#ffffff, #121212);
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        opacity: 0.9;
+        z-index: 1000;
+      }
+      .geDialogTitle {
+        box-sizing: border-box;
+        white-space: nowrap;
+        background: light-dark(#f1f3f4, #121212);
+        border-bottom: 1px solid rgb(192, 192, 192);
+        font-size: 15px;
+        font-weight: bold;
+        text-align: center;
+        color: rgb(35, 86, 149);
+      }
+      .geDialogFooter {
+        background: light-dark(#f1f3f4, #121212);
+        white-space: nowrap;
+        text-align: right;
+        box-sizing: border-box;
+        border-top: 1px solid #e5e5e5;
+        color: darkGray;
+      }
+      .geHelpIcon {
+        width: 16px;
+        margin: 0 4px;
+        vertical-align: text-bottom;
+      }
+      .geBtn,
+      .mxWindow .geBtn {
+        background-color: light-dark(#eeeeee, #1b1d1e);
+        border: 1px solid light-dark(#d8d8d8, #333333);
+        color: light-dark(#3f3f3f, #c0c0c0);
+        font-size: 13px;
+        font-weight: 500;
+        border-radius: 4px;
+        height: 30px;
+        margin: 0 0 0 8px;
+        min-width: 72px;
+        outline: 0;
+        padding: 0 8px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      .geBtn:hover:not(.gePrimaryBtn),
+      .geBtn:focus {
+        border: 1px solid light-dark(#c6c6c6, #333333);
+        background: light-dark(#dadada, #333333);
+      }
+      .geBtn:disabled {
+        opacity: 0.5;
+      }
+      .gePrimaryBtn {
+        background: linear-gradient(
+          light-dark(#4d90fe, #003555) 0px,
+          light-dark(#4787ed, #003555) 100%
+        );
+        border: 1px solid light-dark(#3079ed, transparent);
+        color: light-dark(#ffffff, #c0c0c0);
+      }
+      .gePrimaryBtn:hover:not([disabled]) {
+        background: linear-gradient(
+          light-dark(#4d90fe, #004a77) 0px,
+          light-dark(#357ae8, #004a77) 100%
+        );
+        border: 1px solid light-dark(#2f5bb7, transparent);
+      }
+      .geBtn:disabled {
+        opacity: 0.5;
+      }
+    </style>
+    <script
+      src="https://viewer.diagrams.net/math4/es5/core.js"
+      charset="UTF-8"
+    ></script>
+    <script
+      src="https://viewer.diagrams.net/math4/es5/output/svg.js"
+      charset="UTF-8"
+    ></script>
+    <script
+      src="https://viewer.diagrams.net/math4/es5/input/tex.js"
+      charset="UTF-8"
+    ></script>
+    <script
+      src="https://viewer.diagrams.net/math4/es5/input/asciimath.js"
+      charset="UTF-8"
+    ></script>
+    <script
+      src="https://viewer.diagrams.net/math4/es5/ui/safe.js"
+      charset="UTF-8"
+    ></script>
+    <script
+      src="https://viewer.diagrams.net/math4/es5/fonts/mathjax-tex-font/svg.js"
+      charset="UTF-8"
+    ></script>
+  </head>
+  <body>
+    <div
+      class="mxgraph"
+      style="
+        max-width: 100%;
+        border: 1px solid transparent;
+        position: relative;
+        touch-action: none;
+        color-scheme: light;
+        cursor: pointer;
+        overflow: hidden;
+        margin-top: 26px;
+        width: 225px;
+        height: 615px;
+      "
+      data-mxgraph='{"highlight":"#0000ff","nav":true,"resize":true,"xml":"&lt;mxfile host=\"app.diagrams.net\"&gt;&lt;diagram name=\"Page-1\" id=\"-6LPjeOL-poCJ-o0bfKB\"&gt;&lt;mxGraphModel dx=\"1053\" dy=\"552\" grid=\"1\" gridSize=\"10\" guides=\"1\" tooltips=\"1\" connect=\"1\" arrows=\"1\" fold=\"1\" page=\"1\" pageScale=\"1\" pageWidth=\"850\" pageHeight=\"1100\" math=\"0\" shadow=\"0\"&gt;&lt;root&gt;&lt;mxCell id=\"0\"/&gt;&lt;mxCell id=\"1\" parent=\"0\"/&gt;&lt;mxCell id=\"m9mzPgWKsFcjdhuZ9Lw1-2\" parent=\"1\" style=\"shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;\" value=\"Input, What is pax romania\" vertex=\"1\"&gt;&lt;mxGeometry height=\"60\" width=\"120\" x=\"340\" y=\"120\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;mxCell id=\"m9mzPgWKsFcjdhuZ9Lw1-3\" edge=\"1\" parent=\"1\" source=\"m9mzPgWKsFcjdhuZ9Lw1-2\" style=\"endArrow=classic;html=1;rounded=0;\" target=\"m9mzPgWKsFcjdhuZ9Lw1-6\" value=\"\"&gt;&lt;mxGeometry height=\"50\" relative=\"1\" width=\"50\" as=\"geometry\"&gt;&lt;Array as=\"points\"/&gt;&lt;mxPoint x=\"400\" y=\"310\" as=\"sourcePoint\"/&gt;&lt;mxPoint x=\"400\" y=\"200\" as=\"targetPoint\"/&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\"m9mzPgWKsFcjdhuZ9Lw1-8\" edge=\"1\" parent=\"1\" source=\"m9mzPgWKsFcjdhuZ9Lw1-6\" style=\"edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;\" target=\"m9mzPgWKsFcjdhuZ9Lw1-9\" value=\"\"&gt;&lt;mxGeometry relative=\"1\" as=\"geometry\"&gt;&lt;Array as=\"points\"/&gt;&lt;mxPoint x=\"400\" y=\"340\" as=\"targetPoint\"/&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\"m9mzPgWKsFcjdhuZ9Lw1-6\" parent=\"1\" style=\"rounded=0;whiteSpace=wrap;html=1;\" value=\"Analyse\" vertex=\"1\"&gt;&lt;mxGeometry height=\"60\" width=\"120\" x=\"340\" y=\"240\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;mxCell id=\"m9mzPgWKsFcjdhuZ9Lw1-11\" edge=\"1\" parent=\"1\" source=\"m9mzPgWKsFcjdhuZ9Lw1-9\" style=\"edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;\" target=\"m9mzPgWKsFcjdhuZ9Lw1-10\" value=\"\"&gt;&lt;mxGeometry relative=\"1\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;mxCell id=\"m9mzPgWKsFcjdhuZ9Lw1-9\" parent=\"1\" style=\"rounded=0;whiteSpace=wrap;html=1;\" value=\"Research\" vertex=\"1\"&gt;&lt;mxGeometry height=\"60\" width=\"120\" x=\"340\" y=\"380\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;mxCell id=\"m9mzPgWKsFcjdhuZ9Lw1-10\" parent=\"1\" style=\"shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=0;\" value=\"Output, Pax Romania is an era of peace in the roman empire\" vertex=\"1\"&gt;&lt;mxGeometry height=\"80\" width=\"190\" x=\"305\" y=\"530\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;mxCell id=\"m9mzPgWKsFcjdhuZ9Lw1-13\" edge=\"1\" parent=\"1\" source=\"m9mzPgWKsFcjdhuZ9Lw1-12\" style=\"edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;\" target=\"m9mzPgWKsFcjdhuZ9Lw1-2\" value=\"\"&gt;&lt;mxGeometry relative=\"1\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;mxCell id=\"m9mzPgWKsFcjdhuZ9Lw1-12\" parent=\"1\" style=\"ellipse;whiteSpace=wrap;html=1;\" value=\"User opens chatbot\" vertex=\"1\"&gt;&lt;mxGeometry height=\"60\" width=\"200\" x=\"300\" y=\"20\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;&lt;/diagram&gt;&lt;/mxfile&gt;","toolbar":"pages zoom layers lightbox","page":0}'
+    >
+      <svg
+        style="
+          left: 0px;
+          top: 0px;
+          width: 100%;
+          height: 100%;
+          display: block;
+          min-width: 225px;
+          min-height: 615px;
+          background-image: none;
+          background-color: transparent;
+        "
+      >
+        <g transformOrigin="0 0" transform="scale(1,1)translate(-292,-12)">
+          <g></g>
+          <g>
+            <g transform="translate(0.5,0.5)" style="visibility: visible">
+              <path
+                d="M 340 180 L 360 120 L 460 120 L 440 180 Z"
+                fill="#ffffff"
+                stroke="#000000"
+                stroke-miterlimit="10"
+                pointer-events="all"
+                style="
+                  fill: light-dark(#ffffff, var(--ge-dark-color, #121212));
+                  stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));
+                "
+              ></path>
+            </g>
+            <g style="">
+              <g>
+                <foreignObject
+                  style="overflow: visible; text-align: left"
+                  pointer-events="none"
+                  width="100%"
+                  height="100%"
+                  ><div
+                    style="
+                      display: flex;
+                      align-items: unsafe center;
+                      justify-content: unsafe center;
+                      width: 118px;
+                      height: 1px;
+                      padding-top: 150px;
+                      margin-left: 341px;
+                    "
+                  >
+                    <div
+                      style="
+                        box-sizing: border-box;
+                        font-size: 0;
+                        text-align: center;
+                        color: #000000;
+                      "
+                    >
+                      <div
+                        style="
+                          display: inline-block;
+                          font-size: 12px;
+                          font-family: Helvetica;
+                          color: light-dark(#000000, #ffffff);
+                          line-height: 1.2;
+                          pointer-events: all;
+                          white-space: normal;
+                          word-wrap: normal;
+                        "
+                      >
+                        Input, What is pax romania
+                      </div>
+                    </div>
+                  </div></foreignObject
+                >
+              </g>
+            </g>
+            <g transform="translate(0.5,0.5)" style="visibility: visible">
+              <path
+                d="M 400 180 L 400 233.63"
+                fill="none"
+                stroke="white"
+                stroke-miterlimit="10"
+                pointer-events="stroke"
+                style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255))"
+                visibility="hidden"
+                stroke-width="9"
+              ></path>
+              <path
+                d="M 400 180 L 400 233.63"
+                fill="none"
+                stroke="#000000"
+                stroke-miterlimit="10"
+                pointer-events="stroke"
+                style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255))"
+              ></path>
+              <path
+                d="M 400 238.88 L 396.5 231.88 L 400 233.63 L 403.5 231.88 Z"
+                fill="#000000"
+                stroke="#000000"
+                stroke-miterlimit="10"
+                pointer-events="all"
+                style="
+                  fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));
+                  stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));
+                "
+              ></path>
+            </g>
+            <g transform="translate(0.5,0.5)" style="visibility: visible">
+              <path
+                d="M 400 300 L 400 373.63"
+                fill="none"
+                stroke="white"
+                stroke-miterlimit="10"
+                pointer-events="stroke"
+                style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255))"
+                visibility="hidden"
+                stroke-width="9"
+              ></path>
+              <path
+                d="M 400 300 L 400 373.63"
+                fill="none"
+                stroke="#000000"
+                stroke-miterlimit="10"
+                pointer-events="stroke"
+                style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255))"
+              ></path>
+              <path
+                d="M 400 378.88 L 396.5 371.88 L 400 373.63 L 403.5 371.88 Z"
+                fill="#000000"
+                stroke="#000000"
+                stroke-miterlimit="10"
+                pointer-events="all"
+                style="
+                  fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));
+                  stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));
+                "
+              ></path>
+            </g>
+            <g transform="translate(0.5,0.5)" style="visibility: visible">
+              <rect
+                x="340"
+                y="240"
+                width="120"
+                height="60"
+                fill="#ffffff"
+                stroke="#000000"
+                pointer-events="all"
+                style="
+                  fill: light-dark(#ffffff, var(--ge-dark-color, #121212));
+                  stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));
+                "
+              ></rect>
+            </g>
+            <g style="">
+              <g>
+                <foreignObject
+                  style="overflow: visible; text-align: left"
+                  pointer-events="none"
+                  width="100%"
+                  height="100%"
+                  ><div
+                    style="
+                      display: flex;
+                      align-items: unsafe center;
+                      justify-content: unsafe center;
+                      width: 118px;
+                      height: 1px;
+                      padding-top: 270px;
+                      margin-left: 341px;
+                    "
+                  >
+                    <div
+                      style="
+                        box-sizing: border-box;
+                        font-size: 0;
+                        text-align: center;
+                        color: #000000;
+                      "
+                    >
+                      <div
+                        style="
+                          display: inline-block;
+                          font-size: 12px;
+                          font-family: Helvetica;
+                          color: light-dark(#000000, #ffffff);
+                          line-height: 1.2;
+                          pointer-events: all;
+                          white-space: normal;
+                          word-wrap: normal;
+                        "
+                      >
+                        Analyse
+                      </div>
+                    </div>
+                  </div></foreignObject
+                >
+              </g>
+            </g>
+            <g transform="translate(0.5,0.5)" style="visibility: visible">
+              <path
+                d="M 400 440 L 400 523.63"
+                fill="none"
+                stroke="white"
+                stroke-miterlimit="10"
+                pointer-events="stroke"
+                style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255))"
+                visibility="hidden"
+                stroke-width="9"
+              ></path>
+              <path
+                d="M 400 440 L 400 523.63"
+                fill="none"
+                stroke="#000000"
+                stroke-miterlimit="10"
+                pointer-events="stroke"
+                style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255))"
+              ></path>
+              <path
+                d="M 400 528.88 L 396.5 521.88 L 400 523.63 L 403.5 521.88 Z"
+                fill="#000000"
+                stroke="#000000"
+                stroke-miterlimit="10"
+                pointer-events="all"
+                style="
+                  fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));
+                  stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));
+                "
+              ></path>
+            </g>
+            <g transform="translate(0.5,0.5)" style="visibility: visible">
+              <rect
+                x="340"
+                y="380"
+                width="120"
+                height="60"
+                fill="#ffffff"
+                stroke="#000000"
+                pointer-events="all"
+                style="
+                  fill: light-dark(#ffffff, var(--ge-dark-color, #121212));
+                  stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));
+                "
+              ></rect>
+            </g>
+            <g style="">
+              <g>
+                <foreignObject
+                  style="overflow: visible; text-align: left"
+                  pointer-events="none"
+                  width="100%"
+                  height="100%"
+                  ><div
+                    style="
+                      display: flex;
+                      align-items: unsafe center;
+                      justify-content: unsafe center;
+                      width: 118px;
+                      height: 1px;
+                      padding-top: 410px;
+                      margin-left: 341px;
+                    "
+                  >
+                    <div
+                      style="
+                        box-sizing: border-box;
+                        font-size: 0;
+                        text-align: center;
+                        color: #000000;
+                      "
+                    >
+                      <div
+                        style="
+                          display: inline-block;
+                          font-size: 12px;
+                          font-family: Helvetica;
+                          color: light-dark(#000000, #ffffff);
+                          line-height: 1.2;
+                          pointer-events: all;
+                          white-space: normal;
+                          word-wrap: normal;
+                        "
+                      >
+                        Research
+                      </div>
+                    </div>
+                  </div></foreignObject
+                >
+              </g>
+            </g>
+            <g transform="translate(0.5,0.5)" style="visibility: visible">
+              <path
+                d="M 305 610 L 325 530 L 495 530 L 475 610 Z"
+                fill="#ffffff"
+                stroke="#000000"
+                stroke-miterlimit="10"
+                pointer-events="all"
+                style="
+                  fill: light-dark(#ffffff, var(--ge-dark-color, #121212));
+                  stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));
+                "
+              ></path>
+            </g>
+            <g style="">
+              <g>
+                <foreignObject
+                  style="overflow: visible; text-align: left"
+                  pointer-events="none"
+                  width="100%"
+                  height="100%"
+                  ><div
+                    style="
+                      display: flex;
+                      align-items: unsafe center;
+                      justify-content: unsafe center;
+                      width: 188px;
+                      height: 1px;
+                      padding-top: 570px;
+                      margin-left: 306px;
+                    "
+                  >
+                    <div
+                      style="
+                        box-sizing: border-box;
+                        font-size: 0;
+                        text-align: center;
+                        color: #000000;
+                      "
+                    >
+                      <div
+                        style="
+                          display: inline-block;
+                          font-size: 12px;
+                          font-family: Helvetica;
+                          color: light-dark(#000000, #ffffff);
+                          line-height: 1.2;
+                          pointer-events: all;
+                          white-space: normal;
+                          word-wrap: normal;
+                        "
+                      >
+                        Output, Pax Romania is an era of peace in the roman
+                        empire
+                      </div>
+                    </div>
+                  </div></foreignObject
+                >
+              </g>
+            </g>
+            <g transform="translate(0.5,0.5)" style="visibility: visible">
+              <path
+                d="M 400 80 L 400 113.63"
+                fill="none"
+                stroke="white"
+                stroke-miterlimit="10"
+                pointer-events="stroke"
+                style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255))"
+                visibility="hidden"
+                stroke-width="9"
+              ></path>
+              <path
+                d="M 400 80 L 400 113.63"
+                fill="none"
+                stroke="#000000"
+                stroke-miterlimit="10"
+                pointer-events="stroke"
+                style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255))"
+              ></path>
+              <path
+                d="M 400 118.88 L 396.5 111.88 L 400 113.63 L 403.5 111.88 Z"
+                fill="#000000"
+                stroke="#000000"
+                stroke-miterlimit="10"
+                pointer-events="all"
+                style="
+                  fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));
+                  stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));
+                "
+              ></path>
+            </g>
+            <g transform="translate(0.5,0.5)" style="visibility: visible">
+              <ellipse
+                cx="400"
+                cy="50"
+                rx="100"
+                ry="30"
+                fill="#ffffff"
+                stroke="#000000"
+                pointer-events="all"
+                style="
+                  fill: light-dark(#ffffff, var(--ge-dark-color, #121212));
+                  stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));
+                "
+              ></ellipse>
+            </g>
+            <g style="">
+              <g>
+                <foreignObject
+                  style="overflow: visible; text-align: left"
+                  pointer-events="none"
+                  width="100%"
+                  height="100%"
+                  ><div
+                    style="
+                      display: flex;
+                      align-items: unsafe center;
+                      justify-content: unsafe center;
+                      width: 198px;
+                      height: 1px;
+                      padding-top: 50px;
+                      margin-left: 301px;
+                    "
+                  >
+                    <div
+                      style="
+                        box-sizing: border-box;
+                        font-size: 0;
+                        text-align: center;
+                        color: #000000;
+                      "
+                    >
+                      <div
+                        style="
+                          display: inline-block;
+                          font-size: 12px;
+                          font-family: Helvetica;
+                          color: light-dark(#000000, #ffffff);
+                          line-height: 1.2;
+                          pointer-events: all;
+                          white-space: normal;
+                          word-wrap: normal;
+                        "
+                      >
+                        User opens chatbot
+                      </div>
+                    </div>
+                  </div></foreignObject
+                >
+              </g>
+            </g>
+          </g>
+          <g></g>
+          <g></g>
+        </g>
+      </svg>
+    </div>
+    <script
+      type="text/javascript"
+      src="https://app.diagrams.net/js/viewer-static.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://viewer.diagrams.net/math4/es5/startup.js"
+    ></script>
+  </body>
+</html>
